@@ -2,15 +2,16 @@
 
 class Api::NursesController < ApplicationController
   def index
-    @nurses = Nurse.all
-    # res = []
-    # Nurse.order('id DESC').each do |nurse|
-    #   res.push({
-    #              id: nurse.id,
-    #              name: nurse.user.name,
-    #              patients: nurse.patients
-    #            })
-    # end
+    # @nurses = Nurse.all
+    @nurses = []
+    Nurse.order('id DESC').each do |nurse|
+      @nurses.push({
+                 id: nurse.id,
+                 name: nurse.user.name,
+                 patients: nurse.patients,
+                 head_nurse: nurse.head_nurse
+               })
+    end
     render json: @nurses
   end
 
