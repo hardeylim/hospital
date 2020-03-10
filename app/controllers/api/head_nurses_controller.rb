@@ -1,6 +1,7 @@
 class Api::HeadNursesController < ApplicationController
 
   def index
+    render json: HeadNurses::Builder.new.index
   end
 
   def create
