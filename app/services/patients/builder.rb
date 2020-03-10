@@ -4,9 +4,9 @@ class Patients::Builder
     res = []
     patients.each do |patient|
       res.push({
-        name: patient.user.name,
-        id: patient.id
-      })
+                   name: patient.user.name,
+                   id: patient.id
+               })
     end
     res
   end
