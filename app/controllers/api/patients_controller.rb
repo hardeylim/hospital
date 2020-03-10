@@ -10,12 +10,13 @@ class Api::PatientsController < ApplicationController
     render json: @patient
   end
 
-  def new
-
-  end
-
   def create
+    @user = User.new(patient_params)
+    if (@user.save)
+      @patient = Patient.create(user_id: @user.id)
+    end
 
+    render json: @patient
   end
 
   def edit
@@ -29,5 +30,15 @@ class Api::PatientsController < ApplicationController
   def destroy
 
   end
+
+  private
+
+  def patient_params
+    params.require(:patient)
+          .permit(
+        :name
+    )
+  end
+
 
 end
