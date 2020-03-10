@@ -1,19 +1,9 @@
 # frozen_string_literal: true
 
 class Api::NursesController < ApplicationController
+  
   def index
-    # @nurses = Nurse.all
-    @nurses = []
-    # includes prevent N+1
-    Nurse.includes(:patients).order('id DESC').each do |nurse|
-      @nurses.push({
-                       id: nurse.id,
-                       name: nurse.user.name,
-                       patients: nurse.patients,
-                       head_nurse: nurse.head_nurse
-                   })
-    end
-    render json: @nurses
+    render json: Nurses::Builder.new.index
   end
 
   def show
@@ -37,6 +27,10 @@ class Api::NursesController < ApplicationController
   end
 
   def destroy
+  end
+
+  def assign
+    @service = Nurses::Assigned.new.assign
   end
 
   private

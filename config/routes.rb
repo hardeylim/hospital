@@ -13,10 +13,17 @@ Rails.application.routes.draw do
       member do
         post :assign
       end
-      collection do
-        post :assign
-      end
     end
+
+    # nurses/:id/head_nurses/:id/assign
+    # resources :nurses do
+    #   resources :head_nurses do
+    #     member do
+    #       post :assign
+    #     end
+    #   end
+    # end
+
 
     resources :patients
   end
