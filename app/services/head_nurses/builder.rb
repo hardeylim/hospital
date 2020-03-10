@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class HeadNurses::Builder
   def index
     # @nurses = Nurse.all
@@ -8,9 +10,9 @@ class HeadNurses::Builder
     #
     HeadNurse.order('id DESC').each do |head_nurse|
       @head_nurses.push({
-                           id: head_nurse.id,
-                           name: head_nurse.nurse.user.name
-                       })
+                          id: head_nurse.id,
+                          name: head_nurse.nurse.user.name
+                        })
     end
     # Nurse.includes(:patients).order('id DESC').each do |nurse|
     #   @nurses.push({

@@ -1,5 +1,6 @@
-class Api::PatientsController < ApplicationController
+# frozen_string_literal: true
 
+class Api::PatientsController < ApplicationController
   def index
     @patients = Patient.all
     render json: @patients
@@ -12,33 +13,23 @@ class Api::PatientsController < ApplicationController
 
   def create
     @user = User.new(patient_params)
-    if (@user.save)
-      @patient = Patient.create(user_id: @user.id)
-    end
+    @patient = Patient.create(user_id: @user.id) if @user.save
 
     render json: @patient
   end
 
-  def edit
+  def edit; end
 
-  end
+  def update; end
 
-  def update
-
-  end
-
-  def destroy
-
-  end
+  def destroy; end
 
   private
 
   def patient_params
     params.require(:patient)
           .permit(
-        :name
-    )
+            :name
+          )
   end
-
-
 end

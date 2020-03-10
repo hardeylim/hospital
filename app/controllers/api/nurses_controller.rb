@@ -11,13 +11,13 @@ class Api::NursesController < ApplicationController
     render json: @nurse
   end
 
-
   def create
     if (@user = User.create(nurse_params))
       @nurse = Nurse.create(user_id: @user.id)
+      render json: { nurse: @nurse }, success: true
+    else
+      render json: { errors: @service.errors }, status: 422
     end
-
-    render json: @nurse
   end
 
   def edit; end
@@ -34,9 +34,9 @@ class Api::NursesController < ApplicationController
     @service = Nurses::Assigner.new
     @service.assign(params[:id], params[:patient_id])
     if @service.errors.length.zero?
-      render json: {success: true}
+      render json: { success: true }
     else
-      render json: {errors: @service.errors}, status:422
+      render json: { errors: @service.errors }, status: 422
     end
   end
 

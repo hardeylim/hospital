@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Nurses::Assigned
   attr_reader :errors
 
@@ -11,7 +13,7 @@ class Nurses::Assigned
     if patient.present? && nurse.present?
       NursePatient.find_or_create_by(patient_id: patient_id.id, nurse_id: nurse.id)
     else
-      @errors.push("Invalid Request")
+      @errors.push('Invalid Request')
     end
-  end 
+  end
 end
