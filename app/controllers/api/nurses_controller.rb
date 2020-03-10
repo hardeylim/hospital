@@ -33,10 +33,10 @@ class Api::NursesController < ApplicationController
   def assign
     @service = Nurses::Assigner.new
     @service.assign(params[:id], params[:patient_id])
-    if @service.errors.length == 0
+    if @service.errors.length.zero?
       render json: {success: true}
     else
-      render json: {errors: @service.errors}, 422
+      render json: {errors: @service.errors}, status:422
     end
   end
 
