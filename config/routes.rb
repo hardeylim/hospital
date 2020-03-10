@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
 
     # lagyan ng delete
-    resources :head_nurses
+    resources :head_nurses, only: [:index,:create,:delete]
 
     # POST nurses/:id/assign
     # POST nurses/:id/promote
