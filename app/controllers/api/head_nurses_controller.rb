@@ -13,7 +13,12 @@ class Api::HeadNursesController < ApplicationController
     end
   end
 
+  # Removes head_nurse_id from nurse table
   def delete
-    render
+    if HeadNurse.find_by(id: params[:id])&.destroy
+      render json: { nurse: @nurse }, success: true
+    else
+      render json: { errors: @service.errors }, status: 422
+    end
   end
 end
