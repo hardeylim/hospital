@@ -4,7 +4,8 @@ class Api::NursesController < ApplicationController
   def index
     # @nurses = Nurse.all
     @nurses = []
-    Nurse.order('id DESC').each do |nurse|
+    # includes prevent N+1
+    Nurse.includes(:patients).order('id DESC').each do |nurse|
       @nurses.push({
                        id: nurse.id,
                        name: nurse.user.name,
