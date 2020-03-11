@@ -12,9 +12,9 @@ class Api::NursesController < ApplicationController
   end
 
   def create
-    if (@user = User.create(nurse_params))
-      @nurse = Nurse.create(user_id: @user.id)
-      render json: { nurse: @nurse }, success: true
+    @service = Nurses::Processor.new
+    if (res = @service.create(nurse_params))
+      render json: { nurse: res }
     else
       render json: { errors: @service.errors }, status: 422
     end

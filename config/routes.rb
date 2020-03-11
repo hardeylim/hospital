@@ -15,6 +15,20 @@ Rails.application.routes.draw do
       end
     end
 
+    # GET chat_rooms
+    # GET chat_rooms/:id
+    # POST chat_rooms
+    # DELTE chat_rooms/:id
+    # PATCH chat_rooms/:id
+
+    # POST chat_rooms/:id/messages
+    # DELETE chat_rooms/:id/messages/:id
+    
+    resources :chat_rooms do
+      member do
+        resources :messages, only [:create,:delete]
+      end
+    end
     # nurses/:id/head_nurses/:id/assign
     # resources :nurses do
     #   resources :head_nurses do
