@@ -10,7 +10,7 @@ class Api::HeadNursesController < ApplicationController
     if @head_nurse.save
       render json: { nurse: @nurse }
     else
-      render json: { errors: @head_nurse.errors.full_messages }, 422
+      render json: { errors: @head_nurse.errors.full_messages }, status: 422
     end
   end
 
