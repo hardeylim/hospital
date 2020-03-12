@@ -3,7 +3,7 @@ class CreateChatRooms < ActiveRecord::Migration[6.0]
     
     create_table :chat_rooms do |t|
       t.timestamps
-      t.string
+      t.string :name
       t.integer :creator_id
     end
 
