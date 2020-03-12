@@ -26,7 +26,7 @@ Rails.application.routes.draw do
     
     resources :chat_rooms do
       member do
-        resources :messages, only [:create,:delete]
+        resources :messages, only: %i[create delete]
       end
     end
     # nurses/:id/head_nurses/:id/assign
