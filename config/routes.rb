@@ -23,6 +23,9 @@ Rails.application.routes.draw do
 
     # POST chat_rooms/:id/messages
     # DELETE chat_rooms/:id/messages/:id
+
+
+    resources :sessions
     
     resources :chat_rooms do
       member do
