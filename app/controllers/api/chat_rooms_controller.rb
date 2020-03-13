@@ -1,6 +1,8 @@
 
 class Api::ChatRoomsController < ApplicationController
 
+  before_action :validate_user_in_chat, only [:add_user, :remove_user]
+  
   def index
     render json: ChatRoom.order('id DESC')
   end
@@ -18,6 +20,21 @@ class Api::ChatRoomsController < ApplicationController
   end
 
   def destroy
+  end
+
+  def add_user
+  end
+
+  def remove_user
+  end
+
+  private
+
+  def validate_user_in_chat
+    @chat_room = ChatRoom.find(params[:id])
+    if @chat_room.active_users.where(user_id: @user.id).blank?
+      render json: {errors: "user not in chat"}, status: 422
+    end
   end
 
 
