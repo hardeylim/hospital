@@ -26,9 +26,11 @@ Rails.application.routes.draw do
 
 
     resources :sessions
-    
+
     resources :chat_rooms do
       member do
+        post :add_user
+        post :remove_user
         resources :messages, only: %i[create delete]
       end
     end
