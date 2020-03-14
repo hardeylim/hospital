@@ -1,7 +1,7 @@
 
 class Api::ChatRoomsController < ApplicationController
 
-  before_action :validate_user_in_chat, only [:add_user, :remove_user]
+  before_action :validate_user_in_chat, only: %i[add_user remove_user]
   
   def index
     render json: ChatRoom.order('id DESC')
