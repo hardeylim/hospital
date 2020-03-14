@@ -1,8 +1,7 @@
+# frozen_string_literal: true
 
 class Api::ChatRoomsController < ApplicationController
 
-  before_action :validate_user_exists, only: %i[add_user remove_user]
-  
   def index
     render json: ChatRoom.order('id DESC')
   end
@@ -12,7 +11,7 @@ class Api::ChatRoomsController < ApplicationController
     if @room.present?
       render json: @room
     else
-      render json: { errors: "room not found" }
+      render json: { errors: 'room not found' }
     end
   end
 
@@ -25,46 +24,27 @@ class Api::ChatRoomsController < ApplicationController
     end
   end
 
-  def update
-  end
+  def update; end
 
-  def destroy
-  end
+  def destroy; end
 
   def add_user
-    if user_is_in_chat
-      render json: { errors: "user already in chat" }, status: 422
-    else
-      ChatRoomUser.create(chat_room_id: params[:id], user_id: params[:user_id])
-      render json: { success: true }
-    end
-  end
-
-  def remove_user
-    @service = ChatRooms::Remover.new
-    @service.remove_one(params[:id], params[:user_id])
-    if @service.errors.length.zero?
+    @service = ChatRooms::Adder.new(@user)
+    @service.process(params[:id], params[:user_id])
+    if @service.errors.blank?
       render json: { success: true }
     else
       render json: { errors: @service.errors }, status: 422
     end
   end
 
-  private
-
-  def user_is_in_chat
-    @chat_room = ChatRoom.find(params[:id])
-    # if @chat_room.active_users.where(user_id: @user.id).blank?
-    #   render json: {errors: "user not in chat"}, status: 422
-    # end
-    #
-    @chat_room.active_users.where(user_id: params[:user_id]).present?
-  end
-
-  def validate_user_exists
-    @user = User.find(params[:user_id])
-    if @user.blank?
-      render json: { errors: "User does not exist" }, status: 422
+  def remove_user
+    @service = ChatRooms::Remover.new(@user)
+    @service.process(params[:id], params[:user_id])
+    if @service.errors.blank?
+      render json: { success: true }
+    else
+      render json: { errors: @service.errors }, status: 422
     end
   end
 

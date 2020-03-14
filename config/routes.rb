@@ -24,14 +24,13 @@ Rails.application.routes.draw do
     # POST chat_rooms/:id/messages
     # DELETE chat_rooms/:id/messages/:id
 
-
     resources :sessions
 
     resources :chat_rooms do
+      resources :messages
       member do
         post :add_user
         post :remove_user
-        resources :messages, only: %i[create delete]
       end
     end
     # nurses/:id/head_nurses/:id/assign

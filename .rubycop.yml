@@ -1,0 +1,68 @@
+require:
+  - rubocop-rspec
+  - rubocop-performance
+  - rubocop-rails
+
+#inherit_from: .rubocop_todo.yml
+
+# Offense count: 1
+# Configuration parameters: AllowSafeAssignment.
+Lint/AssignmentInCondition:
+  Enabled: false
+
+# Offense count: 2
+Lint/SuppressedException:
+  Enabled: false
+
+# Offense count: 1
+Metrics/AbcSize:
+  Max: 20
+
+# Offense count: 84
+# Configuration parameters: AllowURI, URISchemes.
+Metrics/LineLength:
+  Max: 120
+  Exclude:
+    - app/views/**/*.axlsx
+
+# Offense count: 1
+# Configuration parameters: CountComments.
+Metrics/MethodLength:
+  Max: 25
+
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*
+
+# Offense count: 6
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+# Offense count: 19
+Style/Documentation:
+  Enabled: false
+
+Rails:
+  Enabled: true
+
+Rails/SkipsModelValidations:
+  Blacklist:
+    - decrement!
+    - decrement_counter
+    - increment!
+    - increment_counter
+    - toggle!
+    - touch
+
+Rails/OutputSafety:
+  Enabled: true
+
+Layout/HashAlignment:
+  Enabled: false
+
+Style/ConditionalAssignment:
+  Enabled: false
+
+RSpec/NamedSubject:
+  Enabled: false
