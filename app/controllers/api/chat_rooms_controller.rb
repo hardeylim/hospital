@@ -25,7 +25,7 @@ class Api::ChatRoomsController < ApplicationController
 
   def update
     @chat_room = ChatRoom.find(params[:id])
-    if @chat_room.update_attributes(name: params[:name])
+    if @chat_room.update(name: params[:name])
       render json: @chat_room
     else
       render json: { errors: @chat_room.errors }, status: 422
