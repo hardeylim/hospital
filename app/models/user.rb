@@ -8,4 +8,5 @@ class User < ApplicationRecord
 
   validates :name, presence: true
 
+  attr_accessor :current_token
 end

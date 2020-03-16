@@ -2,7 +2,7 @@
 
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
-  
+
   before_action :validate_request
 
   private
@@ -11,9 +11,9 @@ class ApplicationController < ActionController::Base
     @token = AccessToken.find_by(token: request.headers['Authorization'])
     if @token.present?
       @user = @token.user
+      @user.current_token = @token.token
     else
-      render json: {error: "Invalid Token"}, status: 401
+      render json: { error: 'Invalid Token' }, status: 401
     end
   end
-
 end

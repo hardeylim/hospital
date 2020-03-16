@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Api::ChatRoomsController < ApplicationController
-
   def index
     render json: ChatRoom.order('id DESC')
   end
@@ -20,11 +19,18 @@ class Api::ChatRoomsController < ApplicationController
     if chat_room.save
       render json: chat_room
     else
-      render json: { errors: chat_room.errors }
+      render json: { errors: chat_room.errors }, status: 422
     end
   end
 
-  def update; end
+  def update
+    @chat_room = ChatRoom.find(params[:id])
+    if @chat_room.update_attributes(name: params[:name])
+      render json: @chat_room
+    else
+      render json: { errors: @chat_room.errors }, status: 422
+    end
+  end
 
   def destroy; end
 
