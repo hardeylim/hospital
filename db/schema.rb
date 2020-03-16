@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -12,65 +10,68 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_200_313_122_856) do
-  create_table 'access_tokens', force: :cascade do |t|
-    t.string 'token'
-    t.integer 'user_id'
-    t.datetime 'deleted_at'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
+ActiveRecord::Schema.define(version: 2020_03_13_123055) do
+
+  create_table "access_tokens", force: :cascade do |t|
+    t.string "token"
+    t.integer "user_id"
+    t.datetime "deleted_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table 'chat_messages', force: :cascade do |t|
-    t.integer 'chat_room_id'
-    t.integer 'user_id'
-    t.text 'message'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
+  create_table "chat_messages", force: :cascade do |t|
+    t.integer "chat_room_id"
+    t.integer "user_id"
+    t.text "message"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table 'chat_room_users', force: :cascade do |t|
-    t.integer 'chat_room_id'
-    t.integer 'user_id'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
+  create_table "chat_room_users", force: :cascade do |t|
+    t.integer "chat_room_id"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table 'chat_rooms', force: :cascade do |t|
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.string 'name'
-    t.integer 'creator_id'
+  create_table "chat_rooms", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
+    t.integer "creator_id"
   end
 
-  create_table 'head_nurses', force: :cascade do |t|
-    t.integer 'nurse_id'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
+  create_table "head_nurses", force: :cascade do |t|
+    t.integer "nurse_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table 'nurse_patients', force: :cascade do |t|
-    t.integer 'nurse_id'
-    t.integer 'patient_id'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
+  create_table "nurse_patients", force: :cascade do |t|
+    t.integer "nurse_id"
+    t.integer "patient_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table 'nurses', force: :cascade do |t|
-    t.integer 'user_id'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.integer 'head_nurse_id'
+  create_table "nurses", force: :cascade do |t|
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "head_nurse_id"
   end
 
-  create_table 'patients', force: :cascade do |t|
-    t.integer 'user_id'
+  create_table "patients", force: :cascade do |t|
+    t.integer "user_id"
   end
 
-  create_table 'users', force: :cascade do |t|
-    t.string 'name'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.string 'basic_password'
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "basic_password"
+    t.string "email"
   end
+
 end
