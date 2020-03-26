@@ -10,34 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_03_134741) do
+ActiveRecord::Schema.define(version: 2020_03_26_133700) do
 
-  create_table "head_nurses", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "nurse_id"
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "nurse_patients", force: :cascade do |t|
-    t.integer "nurse_id"
-    t.integer "patient_id"
+  create_table "task_participants", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "task_id"
+    t.integer "role_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "nurses", force: :cascade do |t|
-    t.integer "user_id"
+  create_table "tasks", force: :cascade do |t|
+    t.string "name"
+    t.integer "status_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "patients", force: :cascade do |t|
-    t.integer "user_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
+    t.date "birthday"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -1,4 +1,4 @@
-class User < ApplicationRecord
+class Task < ApplicationRecord
 
   has_many :task_participants
 

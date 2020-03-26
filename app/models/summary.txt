@@ -1,0 +1,35 @@
+rails
+has migrations
+
+migrations = updates the DB schema
+rails g migration <describe ur migration>
+
+rake db:migrate = to run migration
+rake db:rollback = to rollback a migration
+
+check your schema.rb = if migration is correct. dapat mag reflect sa schema.rb
+
+table should ALWAYS be plural and snake_case
+always add timestamps <--kasi auto naman siya and additional logging
+
+RAILS has models
+
+MODELS are used to associate tables to ruby classes
+ACTIVERECORD = ORM ni ruby = ORM Object Relational Mapping
+
+MODEL file name should be SINGULAR, NO CAPS, SNAKE_CASE
+ALWAYS EXTEND TO ApplicationRecord eg. class User < ApplicationRecord 
+WHY? to discuss LATER.
+
+RAILS HAS many ways to build your associations.
+BUT only use 3
+belongs_to, has_many, has_one
+
+belongs_to, has_one ALWAYS receive singular parameter
+ex. 
+belongs_to :user
+has_one :status
+
+has_many recieves PLURAL parameter
+ex.
+has_many :tasks
