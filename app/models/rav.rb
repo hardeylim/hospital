@@ -1,0 +1,2 @@
+class Rav < ApplicationRecord
+end
