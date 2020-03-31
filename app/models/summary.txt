@@ -120,3 +120,49 @@ id <--primary key, ito ung nag auto
 
 
 kapag belongs to, ibg sabihin nasakin ung foreign key.
+
+
+
+
+
+REST API 
+
+*HINDI SPECIFIC TO SA JSON
+*HINDI SPECIFIC TO SA API/
+
+*REST = given a location.
+HTTP VERBS 
+
+GET,POST,PATCH/PUT,DELETE
+
+
+GET = for getting data
+POST = is for INSERTING DATA
+PATCH/PUT = is for updating data
+DELETE = is for deleting data
+
+
+GET api/tasks <--returns all tasks
+GET api/tasks/:id <--returns detail for a task
+POST api/tasks <--create a new task
+PATCH/PUT api/tasks <--update a new task
+DELTE api/tasks/:id <--DELETE A TASK
+
+
+*
+routes.rb <--anything na naka define kay routes, accessible as URL
+controller
+
+
+params <--special varriable para makuha yung ANY details sa request.
+
+
+Exceptions
+
+pag meron kang method, automatic BEGIN na un
+no need to define BEGIN
+sa dulo ng method moilagay ung exception
+
+.to_s = to string
+.to_i
+.to_f

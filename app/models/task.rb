@@ -5,6 +5,8 @@ class Task < ApplicationRecord
 
   has_many :users
 
+  validates :name, presence: true
+
   def self.tasks_by_user user_id
     from("task_participants, tasks, users").
     where("task_participants.user_id = users.id").

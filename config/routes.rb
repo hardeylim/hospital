@@ -1,23 +1,39 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+
   namespace :api, defaults: { format: 'json' } do
 
+    # get 'hardey', to: "rav#index"
+    # post 'rav', to: "rav#create"
 
-    # lagyan ng delete
-    resources :head_nurses
 
-    # POST nurses/:id/assign
-    # POST nurses/:id/promote
-    # POST nurses/assign
-    resources :nurses do
+    # get 'tasks', to "tasks#index"
+    # get 'tasks/:id', to "tasks#show"
+    # post 'tasks', to "tasks#create"
+    # patch 'tasks/:id', to "tasks#update"
+    # delete 'tasks/:id', to "tasks#destroy"
+
+    # DO task_comments and task_participants
+    # pdeng nested, pwedeng hindi
+
+    # GET,POST,pATCH,DELETE tasks/:id/task_comments
+    # GET,POST,pATCH,DELETE tasks/:id/task_participants
+    
+    # PATCH/DELETE/SHOW tasks/:task_id/task_comments/:id
+
+    resources :tasks do
       member do
-        post :assign
-      end
-      collection do
-        post :assign
+        resources :task_comments
+        resources :task_participants
       end
     end
 
-    resources :patients
+    
+    # resources :task_participants
+    # resources :task_comments
+
+    
+
   end
+  
 end
