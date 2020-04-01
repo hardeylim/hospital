@@ -33,6 +33,7 @@ class Tasks::Builder
     {
       id: task.id,
       name: task.name,
+      status: "WERWEREWR",
       comments: @comment_builder.build_comments(task),
       participants: @participant_builder.build_participants(task)
     }
