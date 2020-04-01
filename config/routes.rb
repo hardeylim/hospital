@@ -16,15 +16,26 @@ Rails.application.routes.draw do
     # DO task_comments and task_participants
     # pdeng nested, pwedeng hindi
 
-    # GET,POST,pATCH,DELETE tasks/:id/task_comments
-    # GET,POST,pATCH,DELETE tasks/:id/task_participants
+    # GET,POST,PATCH,DELETE tasks/:id/task_comments
+    # GET,POST,PATCH,DELETE tasks/:id/task_participants
     
     # PATCH/DELETE/SHOW tasks/:task_id/task_comments/:id
 
+    # api/tasks/inactive
+
     resources :tasks do
+      resources :task_comments
+
       member do
-        resources :task_comments
-        resources :task_participants
+        # get,post,patch,delete
+      end
+
+      # get,post,patch,delete
+      collection do
+        # get,post,patch,delete
+        # kpag resource = different controller
+        get :archived
+        get :in_progress
       end
     end
 

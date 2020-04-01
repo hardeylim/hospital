@@ -3,6 +3,7 @@ class TaskComment < ApplicationRecord
   belongs_to :task
   belongs_to :user
 
+  validates :body, presence: true
 
   # validate :check_user_participant
 

@@ -166,3 +166,10 @@ sa dulo ng method moilagay ung exception
 .to_s = to string
 .to_i
 .to_f
+
+sa routes
+dalawa ung pang nest
+member,collection
+
+member requires an id
+collection doesnt

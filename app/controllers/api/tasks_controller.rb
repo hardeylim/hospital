@@ -9,8 +9,12 @@ class Api::TasksController < ApplicationController
   # BUT if activerecord array/object, automatic na niya i-serialize
   # serialization
   #
+  # ANd controller should be SLIM
+  # ung logics dapat wala sa controller
+  # Service objects = PORO
+  #
   def index
-    render json: Task.all
+    render json: Tasks::Builder.new.build_index
   end
 
   def show
@@ -71,6 +75,10 @@ class Api::TasksController < ApplicationController
     end
   rescue ActiveRecord::RecordNotFound => e
     render json: {error: "Task Not Found", status: 403}
+  end
+
+  def in_progress
+    render json: Task.where(status_id: 1)
   end
 
   private
