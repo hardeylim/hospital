@@ -1,7 +1,9 @@
 class Api::TaskCommentsController < ApplicationController
 
+  # skip_before_action :authenticate_request
+  
   def index
-    @task = Task.find(params[:id])
+    @task = Task.find(params[:task_id])
     render json: @task.task_comments
   end
 

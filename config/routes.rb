@@ -25,7 +25,7 @@ Rails.application.routes.draw do
 
     resources :tasks do
       resources :task_comments
-
+      resources :task_participants
       member do
         # get,post,patch,delete
       end

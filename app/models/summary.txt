@@ -173,3 +173,18 @@ member,collection
 
 member requires an id
 collection doesnt
+
+
+WAY TO SECURE API ENDPOINTS is ALWAYS VIA TOKEN
+
+manyways to secure a session.
+cookie/localstorage
+tokens
+
+COMMONLY to scure API
+
+ACTIVERECORD callbacks
+
+callbacks only use it on simple logics
+
+DELEGATE METHODS

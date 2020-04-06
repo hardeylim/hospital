@@ -1,5 +1,6 @@
 class Api::TasksController < ApplicationController
 
+  before_action :find_task, only: [:update,:destroy]
   #
   # REST dahil sa HTTP VERBS
   # defined convention
@@ -14,11 +15,11 @@ class Api::TasksController < ApplicationController
   # Service objects = PORO
   #
   def index
-    render json: Tasks::Builder.new.build_index
+    render json: Tasks::Builder.new.build_index(current_user)
   end
 
   def show
-    @task = Task.find(params[:id])
+    @task = current_user.tasks.find(params[:id])
     render json: @task
   rescue ActiveRecord::RecordNotFound => e
     render json: {error: "Task Not Found", status: 403}
@@ -47,7 +48,7 @@ class Api::TasksController < ApplicationController
     #   render json: @task
     # end
 
-    @task = Task.new(obj_params)
+    @task = current_user.tasks.new(obj_params)
     if @task.save
       render json: @task
     else
@@ -56,18 +57,16 @@ class Api::TasksController < ApplicationController
   end
 
   def update
-    @task = Task.find(params[:id])
-    if @task.update(obj_params)
-      render json: @task
+    service = Tasks::Updator.new(@task,current_user)
+    res = service.update(obj_params)
+    if service.errors.blank?
+      render json: res
     else
-      render json: {errors: @task.errors.full_messages}, status: 422
+      render json: {errors: service.errors}
     end
-  rescue ActiveRecord::RecordNotFound => e
-    render json: {error: "Task Not Found", status: 403}
   end
 
   def destroy
-    @task = Task.find(params[:id])
     if @task.destroy
       render json: {success: true}
     else
@@ -82,6 +81,10 @@ class Api::TasksController < ApplicationController
   end
 
   private
+
+  def find_task
+    @task = current_user.tasks.find(params[:id])
+  end
 
   def obj_params
     params.require(:task).permit(

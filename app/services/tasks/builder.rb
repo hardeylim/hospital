@@ -21,9 +21,9 @@ class Tasks::Builder
     @comment_builder = Comments::Builder.new
   end
 
-  def build_index
+  def build_index user
     # Task.includes(:task_comments, :task)
-    Task.includes(task_comments: :user, task_participants: :user).each do |task|
+    user.tasks.includes(task_comments: :user, task_participants: :user).each do |task|
       @tasks.push(build_task_details(task))
     end
     @tasks
